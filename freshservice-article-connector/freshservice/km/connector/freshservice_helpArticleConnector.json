@@ -1,0 +1,200 @@
+{
+  "$id": "freshservice_helpArticleConnector",
+  "$schema": "https://schema.yext.com/config/km/connector/v2",
+  "displayName": "freshservice Help Article Connector",
+  "entityType": "helpArticle",
+  "source": {
+    "sourceConfig": {
+      "apiPushConfig": {
+        "app": "60221",
+        "dataFormat": "JSON",
+        "enabled": true
+      }
+    },
+    "baseSelector": {
+      "type": "JSON",
+      "header": "Entity Container",
+      "path": "articles"
+    },
+    "selectors": [
+      {
+        "type": "JSON",
+        "header": "Entity ID",
+        "path": "id"
+      },
+      {
+        "type": "JSON",
+        "header": "Name",
+        "path": "title"
+      },
+      {
+        "type": "JSON",
+        "header": "Category ID",
+        "path": "category_id"
+      },
+      {
+        "type": "JSON",
+        "header": "Body",
+        "path": "description"
+      },
+      {
+        "type": "JSON",
+        "header": "Folder ID",
+        "path": "folder_id"
+      },
+      {
+        "type": "JSON",
+        "header": "Views",
+        "path": "views"
+      },
+      {
+        "type": "JSON",
+        "header": "Thumbs Down",
+        "path": "thumbs_down"
+      },
+      {
+        "type": "JSON",
+        "header": "Thumbs Up",
+        "path": "thumbs_up"
+      },
+      {
+        "type": "JSON",
+        "header": "Date Created",
+        "path": "created_at"
+      },
+      {
+        "type": "JSON",
+        "header": "Date Updated",
+        "path": "updated_at"
+      },
+      {
+        "type": "JSON",
+        "header": "Category Name",
+        "path": "categoryName"
+      },
+      {
+        "type": "JSON",
+        "header": "Folder Name",
+        "path": "folderName"
+      },
+      {
+        "type": "JSON",
+        "header": "url",
+        "path": "id"
+      }
+    ]
+  },
+  "transforms": [
+    {
+      "extractText": {
+        "inputHeader": "Date Created",
+        "newColumnHeader": "Date Created (final)",
+        "extractOperation": "ALL_TEXT_BEFORE",
+        "extractFrom": "FIRST_INSTANCE_MATCHING_TEXT",
+        "valueToFind": {
+          "plainText": {
+            "value": "T",
+            "ignoreCase": false
+          }
+        }
+      }
+    },
+    {
+      "extractText": {
+        "inputHeader": "Date Updated",
+        "newColumnHeader": "Date Updated (final)",
+        "extractOperation": "ALL_TEXT_BEFORE",
+        "extractFrom": "FIRST_INSTANCE_MATCHING_TEXT",
+        "valueToFind": {
+          "plainText": {
+            "value": "T",
+            "ignoreCase": false
+          }
+        }
+      }
+    },
+    {
+      "function": {
+        "inputHeaders": {
+          "headers": [
+            "url"
+          ]
+        },
+        "plugin": "freshservice_SolutionArticles",
+        "function": "createfreshserviceSolutionUrl"
+      }
+    }
+  ],
+  "mappings": [
+    {
+      "field": "externalArticleUpdateDate",
+      "header": "Date Updated (final)",
+      "subfieldPath": []
+    },
+    {
+      "field": "freshservice_views",
+      "header": "Views",
+      "subfieldPath": []
+    },
+    {
+      "field": "entityId",
+      "header": "Entity ID",
+      "subfieldPath": []
+    },
+    {
+      "field": "freshservice_categoryName",
+      "header": "Category Name",
+      "subfieldPath": []
+    },
+    {
+      "field": "externalArticlePostDate",
+      "header": "Date Created (final)",
+      "subfieldPath": []
+    },
+    {
+      "field": "freshservice_categoryID",
+      "header": "Category ID",
+      "subfieldPath": []
+    },
+    {
+      "field": "body",
+      "header": "Body",
+      "subfieldPath": []
+    },
+    {
+      "field": "freshservice_tags",
+      "header": "Tags",
+      "subfieldPath": []
+    },
+    {
+      "field": "name",
+      "header": "Name",
+      "subfieldPath": []
+    },
+    {
+      "field": "freshservice_folderID",
+      "header": "Folder ID",
+      "subfieldPath": []
+    },
+    {
+      "field": "freshservice_thumbsDown",
+      "header": "Thumbs Down",
+      "subfieldPath": []
+    },
+    {
+      "field": "freshservice_thumbsUp",
+      "header": "Thumbs Up",
+      "subfieldPath": []
+    },
+    {
+      "field": "freshservice_folderName",
+      "header": "Folder Name",
+      "subfieldPath": []
+    },
+    {
+      "field": "landingPageUrl",
+      "header": "url",
+      "subfieldPath": []
+    }
+  ]
+}

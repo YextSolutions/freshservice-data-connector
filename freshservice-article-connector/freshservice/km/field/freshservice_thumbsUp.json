@@ -1,0 +1,11 @@
+{
+  "$id": "freshservice_thumbsUp",
+  "$schema": "https://schema.yext.com/config/km/field/v1",
+  "displayName": "Thumbs Up",
+  "group": "NONE",
+  "localization": "PRIMARY_ONLY",
+  "type": {
+    "decimalType": {}
+  },
+  "typeId": "decimal"
+}

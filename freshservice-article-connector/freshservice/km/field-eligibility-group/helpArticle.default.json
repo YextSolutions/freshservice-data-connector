@@ -1,0 +1,15 @@
+{
+  "$id": "freshservice_helpArticle",
+  "$schema": "https://schema.yext.com/config/km/field-eligibility-group/v1",
+  "name": "Help Article-default",
+  "entityType": "helpArticle",
+  "fields": [
+    "freshservice_categoryID",
+    "freshservice_folderID",
+    "freshservice_thumbsDown",
+    "freshservice_categoryName",
+    "freshservice_folderName",
+    "freshservice_thumbsUp",
+    "freshservice_views"
+  ]
+}
